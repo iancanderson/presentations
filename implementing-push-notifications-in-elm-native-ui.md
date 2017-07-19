@@ -23,8 +23,12 @@
 ## Push Notifications
 
 In order to send push notifications to a particular device, we need its "device token"
-<br />
 
+SCREENSHOTS OF THE PUSH NOTIFICATION DIALOGS/FLOW
+
+---
+
+# React Native Example
 
 ```js
 import { PushNotificationIOS } from 'react-native';
@@ -37,6 +41,56 @@ PushNotificationIOS.requestPermissions();
 
 ---
 
-# React Native Push Notifications
+# Let's elmify this!
 
-- React Native has `PushNotificationIOS` library
+- Need to write a "native" elm module:
+  - Elm module that defines the interface for the library
+  - Elm module calls into custom JavaScript module that wraps
+    `PushNotificationIOS`
+
+---
+
+# Elm Module
+
+```elm
+module NativeApi.PushNotificationIOS exposing (register)
+
+import Native.NativeUi.PushNotificationIOS
+import Task exposing (Task)
+
+register : Task String String
+register =
+    Native.NativeUi.PushNotificationIOS.register
+```
+
+---
+
+```js
+const _ohanhi$elm_native_ui$Native_NativeUi_PushNotificationIOS = function () {
+  const { PushNotificationIOS } = require("react-native");
+
+  function register() {
+    // Need to return a `Task String String`
+  }
+
+  return {
+    register,
+  };
+}();
+```
+
+---
+
+```elm
+return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback) {
+  PushNotificationIOS.addEventListener('register', token => {
+    callback(_elm_lang$core$Native_Scheduler.succeed(token));
+  });
+
+  PushNotificationIOS.addEventListener('registrationError', e => {
+    callback(_elm_lang$core$Native_Scheduler.fail(e.message));
+  });
+
+  PushNotificationIOS.requestPermissions();
+});
+```
