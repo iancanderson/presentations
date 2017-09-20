@@ -1,7 +1,8 @@
-# Push Notifications in elm-native-ui
+# [fit] Push Notifications in elm-native-ui
 
-## Ian C. Anderson
-## thoughtbot
+# Ian C. Anderson
+
+![inline, 30%](horizontal_default.png)
 
 ---
 
@@ -300,6 +301,18 @@ handlePushPrePromptResponse result =
 
 # Takeaways
 
-To write an elm-native-ui app, need to contribute code.
-Contributing to `elm-native-ui` isn't scary or hard!
-Try it out for yourself!
+- To write an elm-native-ui app, need to contribute
+- Contributing to `elm-native-ui` isn't scary or hard!
+- Try it out for yourself!
+
+---
+
+# Future of elm mobile apps?
+
+- elm-ios (https://github.com/pzp1997/elm-ios)
+- Google Summer of Code project by Palmer Paul
+- Bypasses react-native, uses Yoga layout engine directly
+
+---
+
+# [fit] Thanks!
